@@ -4,8 +4,10 @@ This tool helps build nginx foss from source and orchestrate nginx in docker.
 
 ## Requirements
 
--   make (3.81+)
+-   make (3.81+), wget, tar, tee
 -   docker
+
+> Note... this was only tested on MacOS - it should work fine on Linux but probably not Windows. :P
 
 ## Variable definitions
 
