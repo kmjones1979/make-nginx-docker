@@ -24,9 +24,33 @@ This tool helps build nginx foss from source and orchestrate nginx in docker.
 -   CentOS 7 (located in docker/centos7)
 -   CentOS 8 (located in docker/centos8)
 
+### Source code download
+
+In each Dockerfile you have the option to download the source code in different ways. You can choose the option best for your needs.
+
+#### 1. Download nginx inside the container
+
+```
+RUN wget http://nginx.org/download/nginx-$nginxVersion.tar.gz -P $tmp
+RUN tar -zxvf $tmp/nginx-$nginxVersion.tar.gz -C $tmp
+```
+
+#### 2. Download the package locally and upload to the container
+
+```
+COPY tmp/nginx/src/nginx-$nginxVersion.tar.gz $tmp
+RUN tar -zxvf $tmp/nginx-$nginxVersion.tar.gz -C $tmp
+```
+
+#### 3. Copy the source code to the container (default)
+
+```
+ADD tmp/nginx/src/nginx-$nginxVersion $tmp/nginx-$nginxVersion
+```
+
 ## Getting started
 
-1. Define the version of nginx and os you want to build within the `Makefile` as well as ports you want to expose and if you want a diff report from a previous version.
+1. Define the version of nginx and os you want to build within the `Makefile` as well as ports you want to expose.
 
 ```
 ngx_version = 1.25.4
