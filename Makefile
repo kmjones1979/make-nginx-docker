@@ -158,11 +158,11 @@ help:
 		echo "  help:     			show this help message"
 		echo "" && \
 		echo "Makefile variable definitions:"
-		echo "- ngx_version		version of nginx to use e.g. 1.25.4"
-		echo "- ngx_diff		version of nginx to diff e.g. 1.25.3"
-		echo "- os_version		operating system of docker image e.g. centos8"
-		echo "- http_port		exposed container port for http e.g. 80"
-		echo "- https_port		exposed container port of https e.g. 443"
+		echo "  ngx_version			version of nginx to use e.g. 1.25.4"
+		echo "  ngx_diff			version of nginx to diff e.g. 1.25.3"
+		echo "  os_version			operating system of docker image e.g. centos8"
+		echo "  http_port			exposed container port for http e.g. 80"
+		echo "  https_port			exposed container port of https e.g. 443"
 
 .SILENT: start wget conf dockerfile build clean stop rm rmi run attach logs nginx-logs diff wipe help
 

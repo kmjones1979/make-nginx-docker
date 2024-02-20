@@ -48,9 +48,9 @@ Targets:
   help:                         show this help message
 
 Makefile variable definitions:
-- ngx_version           version of nginx to use e.g. 1.25.4
-- ngx_diff              version of nginx to diff e.g. 1.25.3
-- os_version            operating system of docker image e.g. centos8
-- http_port             exposed container port for http e.g. 80
-- https_port            exposed container port of https e.g. 443
+  ngx_version                   version of nginx to use e.g. 1.25.4
+  ngx_diff                      version of nginx to diff e.g. 1.25.3
+  os_version                    operating system of docker image e.g. centos8
+  http_port                     exposed container port for http e.g. 80
+  https_port                    exposed container port of https e.g. 443
 ```
