@@ -4,10 +4,10 @@
 # See the make help command for a list of available features
 
 ngx_version = 1.25.4
-ngx_diff = 1.25.3
 os_version = centos8
 http_port = 80
 https_port = 443
+ngx_diff = 1.25.3
 
 
 default: wget conf dockerfile build
@@ -28,7 +28,7 @@ conf:
 		if [ ! -d tmp/nginx/src/nginx-$(ngx_version) ]; then \
 			echo "Please run 'make wget' first"; \
 		else \
-			if [ ! -d etc/nginx ]; then \
+			if [ ! -d etc/nginx/nginx.conf ]; then \
 				mkdir -p etc/nginx && \
 				cp -r tmp/nginx/src/nginx-$(ngx_version)/conf/* etc/nginx && \
 				cp -r tmp/nginx/src/nginx-$(ngx_version)/html etc/nginx && \
