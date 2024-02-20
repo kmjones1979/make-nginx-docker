@@ -26,17 +26,19 @@ To get a list of all available make commands type `make help`
 $_ make help
 Usage: make [target]
 
+"make" runs wget, conf, dockerfile, build by default
+
 Targets:
-  default:                      wget, conf, build
-  clean:                        stop, rm, rmi
   wget:                         download nginx source
   conf:                         copy nginx configuration from source
-  dockerfile:                   load dockerfile from docker dir
+  dockerfile:                   load dockerfile from docker dir based on os
   build:                        build docker image
   run:                          run docker container
+  attach:                       attach to docker container
+
+  clean:                        runs stop, rm, rmi
   stop:                         stop docker container
   start:                        start the nginx container
-  attach:                       attach to docker container
   rm:                           remove docker container
   rmi:                          remove docker image
   logs:                         show docker container logs
@@ -44,4 +46,11 @@ Targets:
   diff:                         diff nginx versions
   wipe:                         wipe out all downloaded files
   help:                         show this help message
+
+Makefile variable definitions:
+- ngx_version           version of nginx to use e.g. 1.25.4
+- ngx_diff              version of nginx to diff e.g. 1.25.3
+- os_version            operating system of docker image e.g. centos8
+- http_port             exposed container port for http e.g. 80
+- https_port            exposed container port of https e.g. 443
 ```
