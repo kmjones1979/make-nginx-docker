@@ -48,9 +48,19 @@ RUN tar -zxvf $tmp/nginx-$nginxVersion.tar.gz -C $tmp
 ADD tmp/nginx/src/nginx-$nginxVersion $tmp/nginx-$nginxVersion
 ```
 
-## Getting started
+## Quick Start
+
+Run `make` to download nignx and configure from source using the prebuilt Dockerfile.
+
+```
+make
+```
+
+# Advanced Configuration
 
 1. Define the version of nginx and os you want to build within the `Makefile` as well as ports you want to expose.
+
+> make sure this matches the `ENV nginxVersion` in the relevant `Dockerfile`
 
 ```
 ngx_version = 1.25.4
@@ -59,15 +69,11 @@ http_port = 80
 https_port = 443
 ```
 
-2. Run `make` to download nignx and configure from source using the prebuilt Dockerfile
+2. Download source, copy config and Dockerfile
 
-```
-make
-```
+Use `make wget`, `make conf` and `make dockerfile` to scaffold out the needed files before building.
 
-> Optionally use `make wget`, `make conf` and `make dockerfile` to scaffold out the needed files before building.
-
-3. Optionally generate a diff patch
+3. Generate a diff patch from previous version
 
 > If you want to get a diff patch on the changes in the current `tmp/nginx/src` directory update the version you want to diff against in the `Makefile` and run `make diff`
 
