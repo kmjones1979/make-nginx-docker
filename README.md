@@ -9,6 +9,66 @@ This tool helps build nginx foss from source and orchestrate nginx in docker.
 
 > Note... this was only tested on MacOS - it should work fine on Linux but probably not Windows. :P
 
+## Quick Start
+
+1. Run `make` to download nignx and build from source using the prebuilt Dockerfile.
+
+```
+make
+```
+
+2. Run `make run` to start nignx on default ports `80` and `443`
+
+```
+make run
+```
+
+3. Test nginx
+
+```
+curl -I localhost
+```
+
+You should see something like this.
+
+```
+$_ curl -I localhost
+HTTP/1.1 200 OK
+Server: nginx/1.25.4
+Date: Tue, 20 Feb 2024 21:54:23 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Tue, 20 Feb 2024 20:11:42 GMT
+Connection: keep-alive
+ETag: "65d5077e-267"
+Accept-Ranges: bytes
+```
+
+## Advanced Configuration
+
+1. Define the version of nginx and os you want to build within the `Makefile` as well as ports you want to expose.
+
+> make sure this matches the `ENV nginxVersion` in the relevant `Dockerfile`
+
+```
+ngx_version = 1.25.4
+os_version = centos8
+http_port = 80
+https_port = 443
+```
+
+2. Download source, copy config and Dockerfile
+
+Use `make wget`, `make conf` and `make dockerfile` to scaffold out the needed files before building.
+
+3. Generate a diff patch from previous version
+
+> If you want to get a diff patch on the changes in the current `tmp/nginx/src` directory update the version you want to diff against in the `Makefile` and run `make diff`
+
+```
+ngx_diff = 1.25.3
+```
+
 ## Variable definitions
 
 -   ngx_version - version of nginx to use e.g. 1.25.4
@@ -46,39 +106,6 @@ RUN tar -zxvf $tmp/nginx-$nginxVersion.tar.gz -C $tmp
 
 ```
 ADD tmp/nginx/src/nginx-$nginxVersion $tmp/nginx-$nginxVersion
-```
-
-## Quick Start
-
-Run `make` to download nignx and configure from source using the prebuilt Dockerfile.
-
-```
-make
-```
-
-# Advanced Configuration
-
-1. Define the version of nginx and os you want to build within the `Makefile` as well as ports you want to expose.
-
-> make sure this matches the `ENV nginxVersion` in the relevant `Dockerfile`
-
-```
-ngx_version = 1.25.4
-os_version = centos8
-http_port = 80
-https_port = 443
-```
-
-2. Download source, copy config and Dockerfile
-
-Use `make wget`, `make conf` and `make dockerfile` to scaffold out the needed files before building.
-
-3. Generate a diff patch from previous version
-
-> If you want to get a diff patch on the changes in the current `tmp/nginx/src` directory update the version you want to diff against in the `Makefile` and run `make diff`
-
-```
-ngx_diff = 1.25.3
 ```
 
 ## Commands available
